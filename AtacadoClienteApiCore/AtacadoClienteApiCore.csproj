@@ -73,6 +73,7 @@
     <Content Include="html\categoriadetalhes.html" />
     <Content Include="html\scripts\categorias.js" />
     <Content Include="html\scripts\detalhes\categoria.js" />
+    <Content Include="html\scripts\detalhes\subcategoria.js" />
     <Content Include="html\scripts\produtos.js" />
     <Content Include="html\scripts\subcategorias.js" />
     <Content Include="html\subcategorias.html" />
