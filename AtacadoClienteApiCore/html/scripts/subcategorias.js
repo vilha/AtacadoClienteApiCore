@@ -1,17 +1,27 @@
-﻿var subcategorias = [];
+﻿let categorias = [];
+let subcategorias = [];
 
 $(function () {
-    if (localStorage.getItem('subcategorias') == null) {
-        CarregarSubcategorias();
+    if (localStorage.getItem('categorias') == null) {
+        CarregarCategorias();
     } else {
-        var temp = localStorage.getItem('subcategorias');
+        let temp = localStorage.getItem('categorias');
         categorias = JSON.parse(temp)
     }
-    PreencherTabelaSubcategorias();
+    PreencherSelectCategorias();
+    EventosDaPagina();
 });
 
-function CarregarSubcategorias() {
-    let urlServico = 'http://localhost:37806/api/estoque/subcategoria';
+function EventosDaPagina() {
+    $('#cmbCategorias').change(function () {
+        let catid = $('#cmbCategorias').val();
+        CarregarSubcategorias(catid);
+        PreencherTabelaSubcategorias();
+    });
+}
+
+function CarregarCategorias() {
+    let urlServico = 'http://localhost:10891/atacado/estoque/categoria';
     $.ajax({
         url: urlServico,
         async: false,
@@ -19,6 +29,43 @@ function CarregarSubcategorias() {
             for (let i = 0; i < data.length; i++) {
                 let item = data[i];
                 let categoria = {
+                    categoriaID: item.categoriaID,
+                    descricao: item.descricao
+                };
+                categorias.push(categoria);
+
+            }
+            localStorage.setItem('categorias', JSON.stringify(categorias));
+        }
+    });
+}
+
+function PreencherSelectCategorias() {
+    //debugger;
+    if (categorias == null || categorias.length == 0) {
+        alert('AVISO - os dados de Categorias não foram carregados.');
+        return;
+    } else {
+        $('#cmbCategorias').empty();
+        $('#cmbCategorias').append($('<option>', { value: 0, text: 'Selecione uma categoria' }));
+        for (let i = 0; i < categorias.length; i++) {
+            let item = categorias[i];
+            $('#cmbCategorias').append($('<option>', { value: item.categoriaID, text: item.descricao }));
+
+        }
+    }
+}
+
+function CarregarSubcategorias(catid) {
+    subcategorias = [];
+    let urlServico = 'http://localhost:10891/atacado/estoque/categoria/'+ catid +'/subcategorias';
+    $.ajax({
+        url: urlServico,
+        async: false,
+        success: function (data) {
+            for (let i = 0; i < data.length; i++) {
+                let item = data[i];
+                let subcategoria = {
                     subcategoriaID: item.subcategoriaID,
                     categoriaID: item.categoriaID,
                     descricao: item.descricao,
@@ -33,6 +80,7 @@ function CarregarSubcategorias() {
 }
 
 function PreencherTabelaSubcategorias() {
+    $('#tblSubcategorias tbody').empty();
     if (subcategorias == null || subcategorias.length == 0) {
         alert("AVISO - os dados de Subcategorias não foram carregados.");
         return;
@@ -54,3 +102,5 @@ function PreencherTabelaSubcategorias() {
         }
     }
 }
+
+

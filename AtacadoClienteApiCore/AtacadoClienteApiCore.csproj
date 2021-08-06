@@ -69,7 +69,11 @@
   <ItemGroup>
     <Content Include="html\categorias.html" />
     <Content Include="html\index.html" />
+    <Content Include="html\produtos.html" />
+    <Content Include="html\categoriadetalhes.html" />
     <Content Include="html\scripts\categorias.js" />
+    <Content Include="html\scripts\detalhes\categoria.js" />
+    <Content Include="html\scripts\produtos.js" />
     <Content Include="html\scripts\subcategorias.js" />
     <Content Include="html\subcategorias.html" />
     <Content Include="Web.config" />

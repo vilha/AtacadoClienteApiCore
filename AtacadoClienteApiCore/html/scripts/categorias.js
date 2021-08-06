@@ -1,17 +1,17 @@
-﻿var categorias = [];
+﻿let categorias = [];
 
 $(function () {
     if (localStorage.getItem('categorias') == null) {
         CarregarCategorias();
     } else {
-        var temp = localStorage.getItem('categorias');
+        let temp = localStorage.getItem('categorias');
         categorias = JSON.parse(temp)
     }
     PreencherTabelaCategorias();
 });
 
 function CarregarCategorias() {
-    let urlServico = 'http://localhost:37806/api/estoque/categoria';
+    let urlServico = 'http://localhost:10891/atacado/estoque/categoria';
     $.ajax({
         url: urlServico,
         async: false,
@@ -29,23 +29,6 @@ function CarregarCategorias() {
             localStorage.setItem('categorias', JSON.stringify(categorias));
         }
     });
-    //$.get(urlServico, function(data, status) {
-    //    if (data.length == 0) {
-    //        alert("Erro ao obter os dados de Categoria. Status:" + status)
-    //    } else {
-    //        for (let i = 0; i < data.length; i++) {
-    //            let item = data[i];
-    //            let categoria = {
-    //                categoriaID: item.categoriaID,
-    //                descricao: item.descricao,
-    //                dataInclusao: item.dataInclusao
-    //            };
-    //            categorias.push(categoria);
-    //        }
-    //        localStorage.setItem('categorias', JSON.stringify(categorias));
-    //        PreencherTabelaCategorias();
-    //    }
-    //});
 }
 
 function PreencherTabelaCategorias() {
@@ -60,7 +43,7 @@ function PreencherTabelaCategorias() {
             let coluna1 = '<td>' + item.categoriaID + '</td>';
             let coluna2 = '<td>' + item.descricao + '</td>';
             let coluna3 = '<td>' + item.dataInclusao + '</td>';
-            let coluna4 = '<td>' + /*item. +*/ '</td>';
+            let coluna4 = '<td><input type="button" id="btnDetalhes" value="Detalhes" onclick="ExibirDetalhes(\'' + item.categoriaID + '\'); return false;" /></td>';
             let final = '</tr>';
 
             let conteudo = inicio + coluna1 + coluna2 + coluna3 + coluna4 + final;
@@ -68,4 +51,11 @@ function PreencherTabelaCategorias() {
             $('#tblCategorias tbody').append(conteudo);
         }
     }
+}
+
+function ExibirDetalhes(categoriaID) {
+    debugger;
+    localStorage.setItem('categoriaID', categoriaID);
+    //let r = window.open('categoriadetalhes.html', '_blank');
+    window.location.href = 'categoriadetalhes.html';
 }

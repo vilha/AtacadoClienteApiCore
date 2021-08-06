@@ -9,31 +9,29 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/detalhes/categoria.js"></script>
 </head>
 <body>
-    <div class="jumbotron text-center">
-        <h1>Atacado - Cliente API Core</h1>
-        <p>Aplicação de teste da REST API Core do Atacado.</p>
-    </div>
-
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
-                <h3>Categorias</h3>
-                <p>Cadastro de Categorias para Produtos.</p>
-                <a href="categorias.html">Clique aqui</a>
-            </div>
-            <div class="col-sm-4">
-                <h3>Subcategorias</h3>
-                <p>Cadastro de Subcategorias para Produtos.</p>
-                <a href="subcategorias.html">Clique aqui</a>
-            </div>
-            <div class="col-sm-4">
-                <h3>Produtos</h3>
-                <p>Cadastro de Produtos</p>
-                <a href="produtos.html">Clique aqui</a>
+            <div class="col-sm-12">
+                <label>Categoria ID:</label>
+                <input type="text" id="txtCategoriaID" readonly />
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label>Descrição:</label>
+                <input type="text" id="txtDescricao" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label>Data de Inclusão:</label>
+                <input type="text" id="txtDataInclusao" readonly />
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
