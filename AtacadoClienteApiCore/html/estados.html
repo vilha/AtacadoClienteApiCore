@@ -9,29 +9,39 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="scripts/detalhes/categoria.js"></script>
+    <script type="text/javascript" src="scripts/estados.js"></script>
 </head>
 <body>
+    <div class="jumbotron text-center">
+        <h1>Estados</h1>
+        <p>Estados brasileiros.</p>
+    </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <label>Categoria ID:</label>
-                <input type="text" id="txtCategoriaID" readonly />
+            <div class="col-sm-12 text-right">
+                <a href="index.html">Voltar</a>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
-                <label>Descrição:</label>
-                <input type="text" id="txtDescricao" readonly />
-            </div>
+            <select id="cmbRegioes"></select>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <label>Data de Inclusão:</label>
-                <input type="text" id="txtDataInclusao" readonly />
+                <table class="table" id="tblEstados">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descrição</th>
+                            <th>Sigla do Estado</th>
+                            <th>ID da Região</th>
+                            <th>Data de Inclusao</th>
+                            <th>Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
         </div>
-
     </div>
 </body>
 </html>

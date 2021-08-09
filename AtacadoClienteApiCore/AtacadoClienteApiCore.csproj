@@ -68,13 +68,36 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="html\categorias.html" />
+    <Content Include="html\detalhes\estadodetalhes.html" />
+    <Content Include="html\detalhes\mesorregiaodetalhes.html" />
+    <Content Include="html\detalhes\microrregiaodetalhes.html" />
+    <Content Include="html\detalhes\municipiodetalhes.html" />
+    <Content Include="html\detalhes\produtodetalhes.html" />
+    <Content Include="html\detalhes\subcategoriadetalhes.html" />
+    <Content Include="html\estados.html" />
     <Content Include="html\index.html" />
+    <Content Include="html\mesorregioes.html" />
+    <Content Include="html\municipios.html" />
     <Content Include="html\produtos.html" />
-    <Content Include="html\categoriadetalhes.html" />
+    <Content Include="html\detalhes\categoriadetalhes.html" />
+    <Content Include="html\detalhes\regiaodetalhes.html" />
+    <Content Include="html\regioes.html" />
     <Content Include="html\scripts\categorias.js" />
     <Content Include="html\scripts\detalhes\categoria.js" />
+    <Content Include="html\scripts\detalhes\estado.js" />
+    <Content Include="html\scripts\detalhes\mesorregiao.js" />
+    <Content Include="html\scripts\detalhes\microrregiao.js" />
+    <Content Include="html\scripts\detalhes\municipio.js" />
+    <Content Include="html\scripts\detalhes\produto.js" />
+    <Content Include="html\scripts\detalhes\regiao.js" />
     <Content Include="html\scripts\detalhes\subcategoria.js" />
+    <Content Include="html\scripts\estados.js" />
+    <Content Include="html\scripts\mesorregioes.js" />
+    <Content Include="html\microrregioes.html" />
+    <Content Include="html\scripts\microrregioes.js" />
+    <Content Include="html\scripts\municipios.js" />
     <Content Include="html\scripts\produtos.js" />
+    <Content Include="html\scripts\regioes.js" />
     <Content Include="html\scripts\subcategorias.js" />
     <Content Include="html\subcategorias.html" />
     <Content Include="Web.config" />
@@ -91,6 +114,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

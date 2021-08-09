@@ -3,30 +3,29 @@
 });
 
 function CarregarDetalhes() {
-    //debugger;
-    var id = localStorage.getItem('subcategoriaID');
+    var id = localStorage.getItem('mesoregiaoID');
     if (id == undefined || id == 0) {
-        alert('AVISO - SubategoriaID não foi definido.');
+        alert('AVISO - MesoregiaoID não foi definido.');
         return;
     } else {
-        localStorage.removeItem('subcategoriaID');
-        var urlServico = 'http://localhost:10891/atacado/estoque/subcategoria/' + id;
+        localStorage.removeItem('mesoregiaoID');
+        var urlServico = 'http://localhost:10891/atacado/localizacao/mesoregiao/' + id;
         $.ajax({
             url: urlServico,
             async: false,
             success: function (data) {
                 if (data.length == 0) {
-                    alert('Erro ao carregar dados da subcategoria');
+                    alert('Erro ao carregar dados da mesorregião.');
                     return;
                 } else {
-                    var subcategoriaID = data.subcategoriaID;
-                    var categoriaID = data.categoriaID;
+                    var mesoregiaoID = data.mesoregiaoID;
                     var descricao = data.descricao;
+                    var ufid = data.ufid;
                     var dataInclusao = data.dataInclusao;
 
-                    $('#txtSubcategoriaID').val(subcategoriaID);
-                    $('#txtCategoriaID').val(categoriaID);
+                    $('#txtMesoregiaoID').val(mesoregiaoID);
                     $('#txtDescricao').val(descricao);
+                    $('#txtEstadoID').val(ufid);
                     $('#txtDataInclusao').val(dataInclusao);
                 }
             }

@@ -1,12 +1,12 @@
-﻿let categorias = [];
-let subcategorias = [];
-let produtos = [];
+﻿var categorias = [];
+var subcategorias = [];
+var produtos = [];
 
 $(function () {
     if (localStorage.getItem('categorias') == null) {
         CarregarCategorias();
     } else {
-        let temp = localStorage.getItem('categorias');
+        var temp = localStorage.getItem('categorias');
         categorias = JSON.parse(temp)
     }    
     EventosDaPagina();
@@ -16,14 +16,14 @@ $(function () {
 function EventosDaPagina() {
     $('#cmbCategorias').change(function () {
         LimparDados();
-        let catid = $('#cmbCategorias').val();
+        var catid = $('#cmbCategorias').val();
         CarregarSubcategorias(catid);
         PreencherSelectSubcategorias();
     });
 
     $('#cmbSubcategorias').change(function () {
-        let catid = $('#cmbSubcategorias').val();
-        CarregarProdutos(catid);
+        var subcatid = $('#cmbSubcategorias').val();
+        CarregarProdutos(subcatid);
         PreencherTabelaProdutos();
     });
 
@@ -33,20 +33,18 @@ function EventosDaPagina() {
 }
 
 function CarregarCategorias() {
-    let urlServico = 'http://localhost:10891/atacado/estoque/categoria';
+    var urlServico = 'http://localhost:10891/atacado/estoque/categoria';
     $.ajax({
         url: urlServico,
         async: false,
         success: function (data) {
-            for (let i = 0; i < data.length; i++) {
-                let item = data[i];
-                let categoria = {
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                var categoria = {
                     categoriaID: item.categoriaID,
-                    descricao: item.descricao,
-                    dataInclusao: item.dataInclusao
+                    descricao: item.descricao
                 };
                 categorias.push(categoria);
-
             }
             localStorage.setItem('categorias', JSON.stringify(categorias));
         }
@@ -55,19 +53,18 @@ function CarregarCategorias() {
 
 function CarregarSubcategorias(catid) {
     subcategorias = [];
-    let urlServico = 'http://localhost:10891/atacado/estoque/categoria/' + catid + '/subcategorias';
+    var urlServico = 'http://localhost:10891/atacado/estoque/categoria/' + catid + '/subcategorias';
     $.ajax({
         url: urlServico,
         async: false,
         success: function (data) {
-            for (let i = 0; i < data.length; i++) {
-                let item = data[i];
-                let subcategoria = {
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                var subcategoria = {
                     subcategoriaID: item.subcategoriaID,
-                    descricao: item.descricao,
+                    descricao: item.descricao
                 };
                 subcategorias.push(subcategoria);
-
             }
             localStorage.setItem('subcategorias', JSON.stringify(subcategorias));
         }
@@ -76,14 +73,14 @@ function CarregarSubcategorias(catid) {
 
 function CarregarProdutos(subcatid) {
     produtos = [];
-    let urlServico = 'http://localhost:10891/atacado/estoque/subcategoria/' + subcatid + '/produtos';
+    var urlServico = 'http://localhost:10891/atacado/estoque/subcategoria/' + subcatid + '/produtos';
     $.ajax({
         url: urlServico,
         async: false,
         success: function (data) {
-            for (let i = 0; i < data.length; i++) {
-                let item = data[i];
-                let produto = {
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                var produto = {
                     produtoID: item.produtoID,
                     subcategoriaID: item.subcategoriaID,
                     categoriaID: item.categoriaID,
@@ -105,8 +102,8 @@ function PreencherSelectCategorias() {
     } else {
         $('#cmbCategorias').empty();
         $('#cmbCategorias').append($('<option>', { value: 0, text: 'Selecione uma categoria' }));
-        for (let i = 0; i < categorias.length; i++) {
-            let item = categorias[i];
+        for (var i = 0; i < categorias.length; i++) {
+            var item = categorias[i];
             $('#cmbCategorias').append($('<option>', { value: item.categoriaID, text: item.descricao }));
 
         }
@@ -120,8 +117,8 @@ function PreencherSelectSubcategorias() {
     } else {
         $('#cmbSubcategorias').empty();
         $('#cmbSubcategorias').append($('<option>', { value: 0, text: 'Selecione uma subcategoria' }));
-        for (let i = 0; i < subcategorias.length; i++) {
-            let item = subcategorias[i];
+        for (var i = 0; i < subcategorias.length; i++) {
+            var item = subcategorias[i];
             $('#cmbSubcategorias').append($('<option>', { value: item.subcategoriaID, text: item.descricao }));
 
         }
@@ -134,19 +131,19 @@ function PreencherTabelaProdutos() {
         alert("AVISO - os dados de Produtos não foram carregados.");
         return;
     } else {
-        for (let i = 0; i < produtos.length; i++) {
-            let item = produtos[i];
+        for (var i = 0; i < produtos.length; i++) {
+            var item = produtos[i];
 
-            let inicio = '<tr>';
-            let coluna1 = '<td>' + item.produtoID + '</td>';
-            let coluna2 = '<td>' + item.subcategoriaID + '</td>';
-            let coluna3 = '<td>' + item.categoriaID + '</td>';
-            let coluna4 = '<td>' + item.descricao + '</td>';
-            let coluna5 = '<td>' + item.dataInclusao + '</td>';
-            let coluna6 = '<td>' + /*item. +*/ '</td>';
-            let final = '</tr>';
+            var inicio = '<tr>';
+            var coluna1 = '<td>' + item.produtoID + '</td>';
+            var coluna2 = '<td>' + item.subcategoriaID + '</td>';
+            var coluna3 = '<td>' + item.categoriaID + '</td>';
+            var coluna4 = '<td>' + item.descricao + '</td>';
+            var coluna5 = '<td>' + item.dataInclusao + '</td>';
+            var coluna6 = '<td><input type="button" id="btnDetalhes" value="Detalhes" onclick="ExibirDetalhes(\'' + item.produtoID + '\'); return false;" /></td>';
+            var final = '</tr>';
 
-            let conteudo = inicio + coluna1 + coluna2 + coluna3 + coluna4 + coluna5 + coluna6 + final;
+            var conteudo = inicio + coluna1 + coluna2 + coluna3 + coluna4 + coluna5 + coluna6 + final;
 
             $('#tblProdutos tbody').append(conteudo);
         }
@@ -155,5 +152,11 @@ function PreencherTabelaProdutos() {
 
 function LimparDados() {
     $('#cmbSubcategorias').empty();
+    $('#cmbSubcategorias').empty();
     $('#tblProdutos tbody').empty();
+}
+
+function ExibirDetalhes(produtoID) {
+    localStorage.setItem('produtoID', produtoID);
+    window.location.href = 'detalhes/produtodetalhes.html';
 }
